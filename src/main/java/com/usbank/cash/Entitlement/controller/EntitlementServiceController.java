@@ -27,14 +27,14 @@ public class EntitlementServiceController {
     @ApiOperation(value = "Gets the product and price information by product id")
     @ApiResponses(
             value = {@ApiResponse(code = 200, message = "Success response"),
-                    @ApiResponse(code = 404, message = "Product not found")})
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET, produces = "application/json")
+                    @ApiResponse(code = 404, message = "Entitlement not found")})
+    @RequestMapping(value = "/entitlements/{id}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ResponseEntity<EntitlementResponse> getEntitlementId(@PathVariable("id") String entitlementId) {
 
     	EntitlementResponse entitlementResponse = new EntitlementResponse();
     	entitlementResponse.setFeatureName("Pivot");
-    	entitlementResponse.setFeatureType("Cash");
+    	entitlementResponse.setFeatureType("Corpmuni");
         return new ResponseEntity<>(entitlementResponse,HttpStatus.OK);
     }
 	

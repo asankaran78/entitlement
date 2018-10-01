@@ -12,6 +12,8 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'groovy'
+
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -21,6 +23,8 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	    maven { url 'https://jitpack.io' }
+	
 }
 
 
@@ -37,10 +41,25 @@ repositories {
 }
 
 dependencies {
-	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile 'org.codehaus.groovy:groovy-all:2.4.5'
+	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.4.RELEASE'
+	
 	
 	compile 'io.springfox:springfox-swagger-ui:2.6.1'
 	compile "io.springfox:springfox-swagger2:2.6.1"
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	  testCompile(
+            'junit:junit:4.12',
+            'org.codehaus.groovy:groovy-all:2.4.4',
+            'org.spockframework:spock-core:1.0-groovy-2.4'
+    )
+	
+}
+
+
+task runAcceptance(type: Test) {
+	description = 'Runs the acceptance tests'
+	group = 'verification'
 }
